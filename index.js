@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-//const areas = require("./data/area");
 //Import Routes
 const areaRoutes = require("./routes/areaRoutes");
 const mealRoutes = require("./routes/mealRoutes");
@@ -19,6 +18,7 @@ const errorHandler = require("./middleware/errorHandler");
 app.use("/api/areas", areaRoutes);
 app.use("/api/meals", mealRoutes);
 app.use("/api/category", categoryRoutes);
+
 //Middleware
 app.use(express.json());
 app.use(requestLogger);

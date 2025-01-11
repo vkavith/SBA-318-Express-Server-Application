@@ -2,9 +2,6 @@ const express = require("express");
 const router = express.Router();
 const categories = require("../data/categories");
 
-//USER ROUTES
-//get all users
-//localhost:3000/api/users/api/users
 router.use(express.json());
 
 router.get("/", (req, res) => {

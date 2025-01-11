@@ -2,9 +2,6 @@ const express = require("express");
 const router = express.Router();
 const meals = require("../data/meals");
 
-//USER ROUTES
-//get all users
-//localhost:3000/api/users/api/users
 router.use(express.json());
 
 router.get("/", (req, res) => {
@@ -25,7 +22,7 @@ router.post("/", (req, res) => {
       res.json({ error: "Area Dish already taken" });
       return;
     }
-    //move code here
+
     const meal = {
       id: meals[meals.length - 1].mealID + 1, //uuid - a long random string
       name: req.body.name,
@@ -73,7 +70,6 @@ router.put("/:mealID", (req, res) => {
       }
       return true;
     }
-    // return true;
   });
 
   if (meal) res.json(meal);
