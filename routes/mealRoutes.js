@@ -5,7 +5,45 @@ const meals = require("../data/meals");
 router.use(express.json());
 
 router.get("/", (req, res) => {
-  res.json(meals);
+  let filterMeals = [...meals];
+  //res.json(meals);
+  //});
+
+  // Filter by category
+  if (req.query.category) {
+    filterMeals = filterMeals.filter(
+      (meal) => meal.category.toLowerCase() === req.query.category.toLowerCase()
+    );
+  }
+
+  //Filter by area
+  if (req.query.area) {
+    filterMeals = filterMeals.filter(
+      (meal) => meal.area.toLowerCase() === req.query.area.toLowerCase()
+    );
+  }
+
+  //Filter by difficulty
+  if (req.query.difficulty) {
+    filterMeals = filterMeals.filter(
+      (meal) =>
+        meal.difficulty.toLowerCase() === req.query.difficulty.toLowerCase()
+    );
+  }
+
+  //Filter by maximum cooking time
+  if (req.query.maxTime) {
+    filterMeals = filterMeals.filter(
+      (meal) => meal.cookTime <= parseInt(req.query.maxTime)
+    );
+  }
+
+  //Limit number of results
+  if (req.query.limit) {
+    filterMeals = filterMeals.slice(0, parseInt(req.query.limit));
+  }
+
+  res.json(filterMeals);
 });
 
 router.post("/", (req, res) => {
